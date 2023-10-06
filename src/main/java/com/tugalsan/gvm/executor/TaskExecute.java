@@ -35,10 +35,11 @@ public class TaskExecute extends Task {
     }
 
     @Override
-    public List<TGS_Tuple2<String, String>> list2tuple() {
-        var lst = super.list2tuple();
-        lst.add(TGS_Tuple2.of(paramCommand(), command));
-        return lst;
+    public List<TGS_Tuple2<String, String>> toListTuple2() {
+        var lstTuple2 = super.toListTuple2();
+        lstTuple2.add(TGS_Tuple2.of(paramCommand(), command));
+        lstTuple2.add(TGS_Tuple2.of(paramTimoutSeconds(), String.valueOf(timoutSeconds)));
+        return lstTuple2;
     }
 
     @Override

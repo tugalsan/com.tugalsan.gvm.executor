@@ -35,13 +35,13 @@ public class TaskCopyFiles extends Task {
     }
 
     @Override
-    public List<TGS_Tuple2<String, String>> list2tuple() {
-        var lst = super.list2tuple();
-        lst.add(TGS_Tuple2.of(paramSourceFilesSize(), String.valueOf(sourceFiles.size())));
+    public List<TGS_Tuple2<String, String>> toListTuple2() {
+        var lstTuple2 = super.toListTuple2();
+        lstTuple2.add(TGS_Tuple2.of(paramSourceFilesSize(), String.valueOf(sourceFiles.size())));
         IntStream.range(0, sourceFiles.size()).forEachOrdered(i -> {
-            lst.add(TGS_Tuple2.of(paramSourceFileI(i), sourceFiles.get(i).toString()));
+            lstTuple2.add(TGS_Tuple2.of(paramSourceFileI(i), sourceFiles.get(i).toString()));
         });
-        return lst;
+        return lstTuple2;
     }
 
     @Override

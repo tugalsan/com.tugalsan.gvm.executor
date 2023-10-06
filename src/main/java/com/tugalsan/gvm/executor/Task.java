@@ -30,7 +30,7 @@ public abstract class Task {
     final public String name;
     final public String description;
 
-    public List<TGS_Tuple2<String, String>> list2tuple() {
+    public List<TGS_Tuple2<String, String>> toListTuple2() {
         List<TGS_Tuple2<String, String>> lst = new ArrayList();
         lst.add(TGS_Tuple2.of(paramName(), name));
         lst.add(TGS_Tuple2.of(paramDescription(), description));
