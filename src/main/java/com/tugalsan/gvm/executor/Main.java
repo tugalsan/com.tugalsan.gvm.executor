@@ -13,7 +13,7 @@ public class Main {
     //WHEN RUNNING IN NETBEANS, ALL DEPENDENCIES SHOULD HAVE TARGET FOLDER!
     //cd D:\git\gvm\com.tugalsan.gvm.executor
     //java --enable-preview --add-modules jdk.incubator.vector -jar target/com.tugalsan.gvm.executor-1.0-SNAPSHOT-jar-with-dependencies.jar    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         //PREREQUESTS
         TS_NetworkSSLUtils.disableCertificateValidation();
         var kill = TS_ThreadSyncTrigger.of();

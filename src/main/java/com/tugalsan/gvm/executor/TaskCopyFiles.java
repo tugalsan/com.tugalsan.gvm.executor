@@ -4,42 +4,44 @@ import com.tugalsan.api.file.server.TS_FileUtils;
 import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
 import com.tugalsan.api.tuple.client.TGS_Tuple2;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class TaskCopyFiles extends Task {
+final public class TaskCopyFiles extends Task {
 
     final public List<Path> sourceFiles;
     final public Path destinationDirectory;
 
-    final public String paramSourceFilesSize() {
-        return paramX("sourceFiles.size()");
+    final public static String paramSourceFilesSize(String name) {
+        return paramX(name, "sourceFiles.size()");
     }
 
-    final public String paramSourceFileI(int i) {
-        return paramX("sourceFiles.get(" + i + ")");
+    final public static String paramSourceFileI(String name, int i) {
+        return paramX(name, "sourceFiles.get(" + i + ")");
     }
 
-    final public String paramdestinationDirectory() {
-        return paramX("destinationDirectory");
+    final public static String paramdestinationDirectory(String name) {
+        return paramX(name, "destinationDirectory");
     }
 
-    private TaskCopyFiles(TS_ThreadSyncTrigger kill, int executionOrder, String name, String description, List<Path> sourceFiles, Path destinationDirectory) {
-        super(kill, executionOrder, name, description);
+    private TaskCopyFiles(TS_ThreadSyncTrigger kill, String name, List<Path> sourceFiles, Path destinationDirectory) {
+        super(kill, name);
         this.sourceFiles = sourceFiles;
         this.destinationDirectory = destinationDirectory;
     }
 
-    public static TaskCopyFiles of(TS_ThreadSyncTrigger kill, int executionOrder, String name, String description, List<Path> sourceFiles, Path destinationDirectory) {
-        return new TaskCopyFiles(kill, executionOrder, name, description, sourceFiles, destinationDirectory);
+    public static TaskCopyFiles of(TS_ThreadSyncTrigger kill, String name, List<Path> sourceFiles, Path destinationDirectory) {
+        return new TaskCopyFiles(kill, name, sourceFiles, destinationDirectory);
     }
 
     @Override
     public List<TGS_Tuple2<String, String>> toListTuple2() {
-        var lstTuple2 = super.toListTuple2();
-        lstTuple2.add(TGS_Tuple2.of(paramSourceFilesSize(), String.valueOf(sourceFiles.size())));
+        List<TGS_Tuple2<String, String>> lstTuple2 = new ArrayList();
+        lstTuple2.add(TGS_Tuple2.of(paramType(name), TaskCopyFiles.class.getSimpleName()));
+        lstTuple2.add(TGS_Tuple2.of(paramSourceFilesSize(name), String.valueOf(sourceFiles.size())));
         IntStream.range(0, sourceFiles.size()).forEachOrdered(i -> {
-            lstTuple2.add(TGS_Tuple2.of(paramSourceFileI(i), sourceFiles.get(i).toString()));
+            lstTuple2.add(TGS_Tuple2.of(paramSourceFileI(name, i), sourceFiles.get(i).toString()));
         });
         return lstTuple2;
     }

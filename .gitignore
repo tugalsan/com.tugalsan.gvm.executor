@@ -28,3 +28,4 @@ replay_pid*
 *.dll
 *.jar
 */target/**
+/target/
