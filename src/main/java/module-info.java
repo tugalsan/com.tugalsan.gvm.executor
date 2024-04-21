@@ -6,7 +6,7 @@ module com.tugalsan.gvm.executor {
     requires com.tugalsan.api.thread;
     requires com.tugalsan.api.url;
     requires com.tugalsan.api.tuple;
-    requires com.tugalsan.api.optional;
+    requires com.tugalsan.api.union;
     requires com.tugalsan.api.runnable;
     requires com.tugalsan.api.callable;
     requires com.tugalsan.api.network;
