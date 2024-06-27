@@ -8,7 +8,7 @@ module com.tugalsan.gvm.executor {
     requires com.tugalsan.api.tuple;
     requires com.tugalsan.api.union;
     requires com.tugalsan.api.runnable;
-    requires com.tugalsan.api.callable;
+    requires com.tugalsan.api.function;
     requires com.tugalsan.api.network;
     requires com.tugalsan.api.unsafe;
     requires com.tugalsan.api.stream;
