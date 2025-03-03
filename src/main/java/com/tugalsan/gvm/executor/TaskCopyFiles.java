@@ -50,6 +50,6 @@ final public class TaskCopyFiles extends Task {
     public boolean execute() {
         return sourceFiles.stream()
                 .map(sourceFile -> TS_FileUtils.copyToFolder(destinationDirectory, destinationDirectory, true))
-                .filter(sourceFile -> sourceFile == null).findAny().isEmpty();
+                .noneMatch(sourceFile -> sourceFile == null);
     }
 }
