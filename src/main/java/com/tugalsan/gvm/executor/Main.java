@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         //PREREQUESTS
         TS_NetworkSSLUtils.disableCertificateValidation();
-        var kill = TS_ThreadSyncTrigger.of();
+        var kill = TS_ThreadSyncTrigger.of("main");
         var settings = TaskExamples.of(TaskExamples.pathDefault());
         if (settings == null) {
             d.ce("main", "ERROR: settings == null");
